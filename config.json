@@ -1,0 +1,18 @@
+{
+  "authenticator": {
+    "type": "dummy",
+    "settings": {
+      "channelPrefix": "some_channel"
+    }
+  },
+  "backend": {
+    "type": "redis",
+    "settings": {
+      "foo": "bar"
+    }
+  },
+  "frontend": {
+    "port": 8080,
+    "type": "websocket"
+  }
+}
