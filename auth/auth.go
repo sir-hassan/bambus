@@ -1,3 +1,10 @@
+// After bambus receives a socket connection request, it should figure out if
+// the request is authenticated and what channels it should be subscribed to.
+//
+// Package auth mainly implements Authenticator interface. Authenticators should
+// implement internally an authentication mechanism. This could be simply firing
+// an http request to an external auth server for example.
+
 package auth
 
 import (

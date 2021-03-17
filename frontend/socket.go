@@ -1,3 +1,6 @@
+// Package frontend defines abstractions bambus use to handle sockets to
+// web frontend.
+
 package frontend
 
 import "net/http"

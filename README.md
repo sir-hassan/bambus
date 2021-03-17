@@ -1,8 +1,10 @@
-# Bambus (under development)
+# Bambus
 
 <img src="https://www.svgrepo.com/show/148390/bamboo.svg" width="100">
 
 ----
+**UNDER DEVELOPMENT**
+
 Bambus is a real-time scalable messaging server, enables web frontend (typically browsers) to get real time updates from web backends. 
 
 # Introduction

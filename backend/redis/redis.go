@@ -1,3 +1,5 @@
+// Package redis implements backend.Tube interface.
+
 package redis
 
 import (
