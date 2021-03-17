@@ -55,6 +55,9 @@ func TestQueuingPusher(t *testing.T) {
 		"[level debug msg new socket queue routine]",
 		"[level debug msg new socket queue routine]",
 	}
+	if len(expectedEntries) != len(logger.entries) {
+		t.Errorf("expected logs length didn't match")
+	}
 	for i, entry := range logger.entries {
 		if expectedEntries[i] != fmt.Sprintf("%s", entry) {
 			t.Errorf("expected logs didn't match, exp: %s, got: %s", expectedEntries[i], fmt.Sprintf("%s", entry))
