@@ -55,11 +55,13 @@ func NewQueuingPusher(logger log.Logger, disConnects chan contact) *queuingPushe
 	}
 
 	go func() {
+		level.Debug(logger).Log("msg", "new pusher routine")
 		newJobGate := make(chan frontend.SocketQueue)
 		for queue := range p.jobsQueue {
 			select {
 			case newJobGate <- queue:
 			default:
+				level.Debug(logger).Log("msg", "new socket queue routine")
 				go p.work(newJobGate, queue)
 			}
 		}
