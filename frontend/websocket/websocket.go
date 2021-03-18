@@ -13,34 +13,34 @@ func ignoreOrigin(r *http.Request) bool {
 
 var upgrader = websocket.Upgrader{CheckOrigin: ignoreOrigin}
 
-type wsSocket struct {
+type socket struct {
 	conn *websocket.Conn
 	lock *sync.Mutex
 }
 
-var _ frontend.Socket = &wsSocket{}
+var _ frontend.Socket = &socket{}
 
-func NewWSSocket(w http.ResponseWriter, r *http.Request) (*wsSocket, error) {
+func NewSocket(w http.ResponseWriter, r *http.Request) (*socket, error) {
 	wsConn, err := upgrader.Upgrade(w, r, nil)
 	if err != nil {
 		return nil, err
 	}
-	return &wsSocket{conn: wsConn, lock: new(sync.Mutex)}, nil
+	return &socket{conn: wsConn, lock: new(sync.Mutex)}, nil
 }
 
-func (s wsSocket) Close() error {
+func (s *socket) Close() error {
 	s.lock.Lock()
 	defer s.lock.Unlock()
 
 	return s.conn.Close()
 }
 
-func (s wsSocket) Read() ([]byte, error) {
+func (s *socket) Read() ([]byte, error) {
 	_, message, err := s.conn.ReadMessage()
 	return message, err
 }
 
-func (s wsSocket) Write(data []byte) error {
+func (s *socket) Write(data []byte) error {
 	s.lock.Lock()
 	defer s.lock.Unlock()
 	return s.conn.WriteMessage(websocket.TextMessage, data)

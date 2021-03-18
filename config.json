@@ -13,6 +13,6 @@
   },
   "frontend": {
     "port": 8080,
-    "type": "websocket"
+    "type": "sse"
   }
 }
